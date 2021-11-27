@@ -10,7 +10,7 @@
   Here's a big thank you from Codidact to the following people, who have donated to support what we do.
 </p>
 
-<% donations.each do |row| %>
+<% donations&.each do |row| %>
   <div class="widget">
     <div class="widget--body">
       <% if config[:display][:message] %>

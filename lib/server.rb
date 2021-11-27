@@ -138,7 +138,7 @@ class DonationsList < Sinatra::Base
   end
 
   get '/donations' do
-    erb :donations, locals: { donations: donations.reverse, config: config[:app] }
+    erb :donations, locals: { donations: donations&.reverse, config: config[:app] }
   end
 
   run!
