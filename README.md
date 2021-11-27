@@ -7,7 +7,7 @@ Clone the repository. Make sure you have a working Ruby environment.
  * Run `bundle install` to install dependencies
  * Rename `config.sample.yml` to `config.yml` and fill in the values for your setup. You can obtain
    OAuth app keys for the Codidact network at https://meta.codidact.com/oauth/apps.
- * Create a blank `donations.yml` file in the root of the repository.
+ * Rename `donations.sample.yml` to `donations.yml`.
 
 That's it!
 
