@@ -1,3 +1,8 @@
+@import 'fontawesome/fontawesome';
+@import 'fontawesome/solid';
+@import 'fontawesome/regular';
+@import 'fontawesome/brands';
+
 header {
   a {
     padding: 0 !important;
@@ -16,4 +21,8 @@ header {
     height: 20px;
     margin-left: 4px;
   }
+}
+
+.donations-header, .donations-lead {
+  text-align: center;
 }

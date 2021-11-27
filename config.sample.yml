@@ -12,3 +12,7 @@ crypt:
 # The app section contains configuration for this app.
 app:
   base_host: http://localhost:4567
+  display:
+    amount: true
+    date: true
+    message: true

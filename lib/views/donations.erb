@@ -1,0 +1,30 @@
+<h1 class="donations-header">
+  <i class="far fa-star has-color-yellow-700"></i>
+  <i class="fas fa-star has-color-yellow-700"></i>
+  Thanks &amp; Acknowledgements
+  <i class="fas fa-star has-color-yellow-700"></i>
+  <i class="far fa-star has-color-yellow-700"></i>
+</h1>
+
+<p class="is-lead donations-lead">
+  Here's a big thank you from Codidact to the following people, who have donated to support what we do.
+</p>
+
+<% donations.each do |row| %>
+  <div class="widget">
+    <div class="widget--body">
+      <% if config[:display][:message] %>
+        <blockquote><%= row['message'] %></blockquote>
+      <% end %>
+      <p>
+        <strong><%= row['name'] %></strong>
+        <% if config[:display][:amount] %>
+          &mdash; <%= row['amount'] %>
+        <% end %>
+      </p>
+      <% if config[:display][:date] %>
+        <p class="has-color-tertiary-900 has-font-size-caption"><%= row['date'] %></p>
+      <% end %>
+    </div>
+  </div>
+<% end %>

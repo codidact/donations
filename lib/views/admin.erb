@@ -7,7 +7,8 @@
     <tr>
       <th>Public name</th>
       <th>Message</th>
-      <th>Donation link</th>
+      <th>Date</th>
+      <th>Amount</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -16,8 +17,10 @@
       <tr data-id="<%= row['id'] %>">
         <td><%= row['name'] %></td>
         <td><%= row['message'] %></td>
-        <td><a href="<%= row['link'] %>"><%= row['link'].split('/')[2] %></a></td>
+        <td><%= row['date'] %></td>
+        <td><%= row['amount'] %></td>
         <td>
+          <a href="<%= row['link'] %>">Link</a><br/>
           <a href="javascript:void(0)" class="js-donation-edit">Edit</a><br/>
           <a href="javascript:void(0)" class="js-donation-delete is-red">Delete</a>
         </td>
@@ -41,6 +44,12 @@
 
       <label for="link" class="form-element">Link</label>
       <input type="text" class="form-element" id="link" name="link" />
+
+      <label for="amount" class="form-element">Amount</label>
+      <input type="text" class="form-element" id="amount" name="amount" />
+
+      <label for="date" class="form-element">Date</label>
+      <input type="date" class="form-element" id="date" name="date" />
     </div>
     <div class="modal--footer">
       <button type="button" class="button is-filled js-edit-button">Update</button>
@@ -63,6 +72,12 @@
 
       <label for="new-link" class="form-element">Link</label>
       <input type="text" class="form-element" id="new-link" name="link" />
+
+      <label for="new-amount" class="form-element">Amount</label>
+      <input type="text" class="form-element" id="new-amount" name="amount" />
+
+      <label for="new-date" class="form-element">Date</label>
+      <input type="date" class="form-element" id="new-date" name="date" />
     </div>
     <div class="modal--footer">
       <button type="button" class="button is-filled js-new-button">Add</button>

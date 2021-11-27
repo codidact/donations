@@ -39,7 +39,7 @@ class DonationsList < Sinatra::Base
   end
 
   get '/donations/application.css' do
-    scss :application, style: :compressed
+    scss :'scss/application', style: :compressed
   end
 
   get '/donations/admin' do
@@ -57,7 +57,9 @@ class DonationsList < Sinatra::Base
         'id' => (data&.map { |r| r['id'] }&.max || 0) + 1,
         'name' => payload['name'],
         'message' => payload['message'],
-        'link' => payload['link']
+        'link' => payload['link'],
+        'date' => payload['date'],
+        'amount' => payload['amount']
       }
 
       data << item
@@ -87,6 +89,8 @@ class DonationsList < Sinatra::Base
       item['name'] = payload['name']
       item['message'] = payload['message']
       item['link'] = payload['link']
+      item['date'] = payload['date']
+      item['amount'] = payload['amount']
 
       data[idx] = item
       File.write(FILE_PATH, data.to_yaml)
@@ -111,7 +115,8 @@ class DonationsList < Sinatra::Base
 
   get '/donations/login' do
     if params['code'].present?
-      auth_params = { app_id: config.oauth.app_id, secret: config.oauth.secret, code: params['code'] }.stringify_keys
+      auth_params = { app_id: config[:oauth][:app_id], secret: config[:oauth][:secret],
+                      code: params['code'] }.stringify_keys
       resp = Net::HTTP.post_form(URI('https://meta.codidact.com/oauth/token'), auth_params)
       if resp.code == '200'
         data = JSON.parse(resp.body)
@@ -133,7 +138,7 @@ class DonationsList < Sinatra::Base
   end
 
   get '/donations' do
-    erb :donations, locals: { donations: donations }
+    erb :donations, locals: { donations: donations.reverse, config: config[:app] }
   end
 
   run!

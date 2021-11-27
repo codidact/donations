@@ -1,6 +1,4 @@
-require 'ostruct'
 require 'yaml'
-require 'json'
 require 'active_support/core_ext/hash'
 
 class Config
@@ -10,8 +8,7 @@ class Config
 
   def self.read
     hash = YAML.load_file FILE_PATH
-    json = hash.to_json
-    Config.new(JSON.parse(json, object_class: OpenStruct))
+    Config.new(deep_to_indifferent(hash))
   end
 
   def initialize(data)
@@ -20,29 +17,36 @@ class Config
 
   def set(key, value)
     *path, final_key = key.split('.')
-    hash = deep_to_h(data).deep_stringify_keys
-    to_set = path.empty? ? hash : hash.dig(*path)
+    to_set = path.empty? ? @data : @data.dig(*path)
     return unless to_set
 
     to_set[final_key] = value
     File.write(FILE_PATH, hash.to_yaml)
   end
 
-  def method_missing(name, *_args, **_opts, &_block)
+  def [](name)
     @data[name]
   end
 
-  def respond_to_missing?(name, *_args, **_opts, &_block)
-    @data.include? name
+  def []=(name, value)
+    @data[name] = value
   end
 
-  private
+  def to_s
+    "#<Config:0x#{object_id.to_s(16)} #{data.inspect}>"
+  end
 
-  def deep_to_h(os)
-    if os.is_a? OpenStruct
-      os.to_h.transform_values { |v| deep_to_h(v) }
-    else
-      os
+  alias :inspect :to_s
+
+  class << self
+    private
+
+    def deep_to_indifferent(h)
+      if h.is_a? Hash
+        h.with_indifferent_access.transform_values { |v| deep_to_indifferent(v) }
+      else
+        h
+      end
     end
   end
 end

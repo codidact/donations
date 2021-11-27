@@ -1,6 +1,6 @@
 <p>You need to sign in to access the admin panel.</p>
 
-<a href="https://meta.codidact.com/oauth?app_id=<%= config.oauth.app_id %>&scope[]=perpetual&redirect_uri=<%= config.app.base_host %>/donations/login"
+<a href="https://meta.codidact.com/oauth?app_id=<%= config[:oauth][:app_id] %>&scope[]=perpetual&redirect_uri=<%= config[:app][:base_host] %>/donations/login"
    class="button is-outlined sign-in">
   Sign in with
   <img alt src="/donations/assets/codidact.png" />

@@ -11,15 +11,15 @@ class Authenticator
     @cookies = cookies
     @config  = Config.read
 
-    unless @config.crypt.salt.present?
+    unless @config[:crypt][:salt].present?
       salt = SecureRandom.random_bytes(ActiveSupport::MessageEncryptor.key_len)
       encoded = salt.chars.map { |c| c.ord.to_s(16) }.join
       @config.set('crypt.salt', encoded)
     end
 
-    encoded = @config.crypt.salt
+    encoded = @config[:crypt][:salt]
     salt = encoded.chars.each_slice(2).map { |pair| pair.join.to_i(16).chr }.join
-    key = ActiveSupport::KeyGenerator.new(@config.crypt.master_key)
+    key = ActiveSupport::KeyGenerator.new(@config[:crypt][:master_key])
                                      .generate_key(salt, ActiveSupport::MessageEncryptor.key_len)
     @encryptor = ActiveSupport::MessageEncryptor.new(key)
   end
