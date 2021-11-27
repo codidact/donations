@@ -1,7 +1,7 @@
 require 'active_support/core_ext/object/blank'
 require 'active_support/core_ext/hash'
 require 'net/http'
-require 'sinatra'
+require 'sinatra/base'
 require 'sinatra/cookies'
 require 'sinatra/reloader'
 require_relative 'authentication'
