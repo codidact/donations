@@ -1,0 +1,19 @@
+header {
+  a {
+    padding: 0 !important;
+  }
+
+  .header--instance-name img {
+    height: 2.5em;
+  }
+}
+
+.sign-in {
+  display: inline-flex !important;
+  align-items: center;
+
+  img {
+    height: 20px;
+    margin-left: 4px;
+  }
+}

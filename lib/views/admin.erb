@@ -1,0 +1,71 @@
+<h1>Donations List</h1>
+
+<a href="javascript:void(0)" data-modal="#js-new-modal" class="button is-outlined">Add New</a>
+
+<table class="table is-striped is-with-hover is-full-width">
+  <thead>
+    <tr>
+      <th>Public name</th>
+      <th>Message</th>
+      <th>Donation link</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% donations&.each do |row| %>
+      <tr data-id="<%= row['id'] %>">
+        <td><%= row['name'] %></td>
+        <td><%= row['message'] %></td>
+        <td><a href="<%= row['link'] %>"><%= row['link'].split('/')[2] %></a></td>
+        <td>
+          <a href="javascript:void(0)" class="js-donation-edit">Edit</a><br/>
+          <a href="javascript:void(0)" class="js-donation-delete is-red">Delete</a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="modal is-with-backdrop" id="js-edit-modal">
+  <div class="modal--container">
+    <div class="modal--header">
+      <button class="button is-close-button modal--header-button" data-modal="#js-edit-modal">&times;</button>
+      Edit
+    </div>
+    <div class="modal--body">
+      <label for="name" class="form-element">Name</label>
+      <input type="text" class="form-element" id="name" name="name" />
+
+      <label for="message" class="form-element">Message</label>
+      <textarea class="form-element" id="message" name="message"></textarea>
+
+      <label for="link" class="form-element">Link</label>
+      <input type="text" class="form-element" id="link" name="link" />
+    </div>
+    <div class="modal--footer">
+      <button type="button" class="button is-filled js-edit-button">Update</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal is-with-backdrop" id="js-new-modal">
+  <div class="modal--container">
+    <div class="modal--header">
+      <button class="button is-close-button modal--header-button" data-modal="#js-new-modal">&times;</button>
+      Add New
+    </div>
+    <div class="modal--body">
+      <label for="new-name" class="form-element">Name</label>
+      <input type="text" class="form-element" id="new-name" name="name" />
+
+      <label for="new-message" class="form-element">Message</label>
+      <textarea class="form-element" id="new-message" name="message"></textarea>
+
+      <label for="new-link" class="form-element">Link</label>
+      <input type="text" class="form-element" id="new-link" name="link" />
+    </div>
+    <div class="modal--footer">
+      <button type="button" class="button is-filled js-new-button">Add</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Codidact &mdash; Donations</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@codidact/co-design@0.12.0/dist/codidact.css" />
+  <link rel="stylesheet" type="text/css" href="/donations/application.css" />
+  <script type="application/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/@codidact/co-design@0.12.0/js/co-design.js"></script>
+  <script type="application/javascript" src="/donations/assets/application.js"></script>
+</head>
+<body>
+  <header class="header">
+    <div class="header--container container">
+      <div class="header--brand">
+        <a href="/" class="header--instance-name"><img alt src="/donations/assets/codidact.png" /></a>
+      </div>
+
+      <div class="header--menu">
+        <div class="header--separator"></div>
+
+        <% if defined?(current_user) %>
+          <span class="header--item"><%= current_user[:username] %></span>
+          <form method="POST" action="/donations/logout"><button type="submit" class="button is-danger is-outlined">Sign out</button></form>
+        <% end %>
+      </div>
+    </div>
+  </header>
+
+  <main class="container has-padding-2">
+    <%= yield %>
+  </main>
+</body>
+</html>

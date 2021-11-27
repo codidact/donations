@@ -1,0 +1,14 @@
+# The oauth section contains your OAuth app details for authentication against Codidact accounts.
+oauth:
+  public: ~
+  secret: ~
+  app_id: ~
+
+# The crypt section contains details for encryption and signing. Fields will be added here by the app.
+crypt:
+  # Set this to a long secure key. This will be the base key for the app.
+  master_key: ~
+
+# The app section contains configuration for this app.
+app:
+  base_host: http://localhost:4567
