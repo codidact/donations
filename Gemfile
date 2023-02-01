@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'activesupport', '~> 5.2'
+gem 'activesupport', '~> 6.0'
 gem 'rubocop', '~> 1'
 gem 'sass', '~> 3.7'
 gem 'sinatra', '~> 2.1'
