@@ -1,6 +1,10 @@
 # Donations
 Small web app to display and adminstrate a list of donors to the Codidact Foundation.
 
+> **Important note**
+>
+> This project is no longer actively in use, and has been replaced by a page on codidact.org. This repository is archived and read-only.
+
 ## Installation
 Clone the repository. Make sure you have a working Ruby environment.
 
